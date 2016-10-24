@@ -6,3 +6,7 @@ img {
 .votes {
   color: dodgerblue;
 }
+
+.date {
+  display: inline-block;
+}
