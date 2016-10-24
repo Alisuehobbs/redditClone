@@ -52,4 +52,8 @@ app.controller("redditController", ($scope) => {
     content: "Can't wait to cook this!"
   }]
 
+  $scope.showComments = function() {
+    $scope.showcomments = true
+  }
+
 })

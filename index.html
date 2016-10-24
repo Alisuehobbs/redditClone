@@ -95,7 +95,7 @@
             <h3 class="media-heading">{{post.title}} | <a class="glyphicon glyphicon-arrow-up" aria-hidden="true" ng-click="addvote(post)"></a> <a class="glyphicon glyphicon-arrow-down" aria-hidden="true" ng-click="subtractvote(post)"></a> <span class="votes"> {{post.votes}} </span>
           </h3>
             <p>{{post.description}}</p>
-            <button type="button" class="btn btn-default" ng-click="showcomment=true">
+            <button type="button" class="btn btn-default" ng-click="showComments()">
             <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Comments
           </button>
             <button type="button" class="btn btn-default">
@@ -112,7 +112,7 @@
     </div>
 
     <!-- comments -->
-    <div class="panel panel-default" ng-repeat="comment in comments" ng-show="showcomment">
+    <div class="panel panel-default" ng-repeat="comment in comments" ng-show="showcomments">
       <div class="panel-heading">
         <h3 class="panel-title">{{comment.title}}</h3>
       </div>
