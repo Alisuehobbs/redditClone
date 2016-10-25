@@ -36,6 +36,16 @@ app.controller("redditController", ($scope) => {
         comments: []
     }]
 
+    $scope.votes = function(post) {
+      if (post.votes > 0) {
+        return 'positive';
+      } else if (post.votes < 0) {
+        return 'negative';
+      } else {
+        return 'neutral';
+      }
+    }
+
     $scope.submitPost = function(post) {
         event.preventDefault()
         if (post) {

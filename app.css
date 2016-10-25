@@ -3,10 +3,22 @@ img {
   width: auto;
 }
 
-.votes {
+/*.votes {
   color: limegreen;
-}
+}*/
 
 .date {
   display: inline-block;
+}
+
+.positive {
+  color: lime;
+}
+
+.neutral {
+  color: blue;
+}
+
+.negative {
+  color: red;
 }
