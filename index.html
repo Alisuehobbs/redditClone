@@ -48,7 +48,7 @@
         </ul>
         <form class="navbar-form navbar-left pull-right">
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search">
+            <input type="text" class="form-control" placeholder="Search" ng-model="search">
           </div>
         </form>
       </div>
@@ -88,7 +88,7 @@
     </form>
 
     <!-- see posts -->
-    <div ng-repeat="post in posts | orderBy: sort">
+    <div ng-repeat="post in posts | orderBy: sort | filter:search">
       <div class="panel panel-default">
         <div class="panel-body">
           <div class="media">
