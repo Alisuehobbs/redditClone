@@ -1,20 +1,77 @@
+body {
+  color: black;
+  background-color: #E5E4E2;
+  padding-top: 70px;
+}
+
+.navbar-default {
+  background-color: #E5E4E2;
+}
+
+.navbar-default .navbar-brand {
+  color: #337ab7;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: black;
+}
+
+.dropdown {
+  margin-top: 15px;
+}
+
+.panel-footer {
+  background-color: white;
+}
+
 img {
-  height: 200px;
-  width: auto;
+    height: 200px;
+    width: auto;
 }
 
 .date {
-  display: inline-block;
+    display: inline-block;
 }
 
 .positive {
-  color: lime;
+    color: lime;
 }
 
 .neutral {
-  color: blue;
+    color: blue;
 }
 
 .negative {
-  color: red;
+    color: red;
+}
+
+.ng-enter {
+  transition:0.6s ease all;
+  opacity:0;
+  transform:translateY(50%);
+  transform:translateX(50%);
+}
+
+.ng-enter.ng-enter-active {
+  opacity:1;
+  transform:translateY(0);
+}
+
+.ng-leave {
+  transition:0.4s ease all;
+  opacity:1;
+  transform:translateY(0);
+}
+
+.ng-leave.ng-leave-active {
+  opacity:0;
+  transform:translateY(50%);
+  transform:translateX(50%);
+}
+
+.ng-enter-stagger, .ng-leave-stagger {
+  transition-delay: 0.1s;
+  transition-duration: 0.5s;
 }

@@ -24,7 +24,7 @@
 
 <body ng-controller="redditController">
 
-  <nav class="navbar navbar-default">
+  <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -40,9 +40,12 @@
           <li><a href="" ng-click="showme = !showme"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create A Post </a></li>
           <li><label for="sort">Sort By:</label>
             <select class="dropdown" ng-model="sort" name="sort">
-              <option value="-date">Date</option>
-              <option value="title">Title</option>
-              <option value="-votes">Votes</option>
+              <option value="-date">Date: Most Recent to Oldest</option>
+              <option value="date">Date: Oldest to Most Recent</option>
+              <option value="title">Title: A-Z</option>
+              <option value="-title">Title: Z-A</option>
+              <option value="-votes">Votes: Highest to Lowest</option>
+              <option value="votes">Votes: Lowest to Highest</option>
             </select>
           </li>
         </ul>
@@ -151,6 +154,7 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
   <script src="app.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.js"></script>
 </body>
 
 </html>
