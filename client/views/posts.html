@@ -71,14 +71,14 @@
         <div class="media-body">
           <h3 class="media-heading">{{post.title}}</a> | <a class="glyphicon glyphicon-arrow-up" aria-hidden="true" ng-click="addvote(post)"></a> <a class="glyphicon glyphicon-arrow-down" aria-hidden="true" ng-click="subtractvote(post)"></a> <span ng-class="votes(post)"> {{post.votes}} </span>
       </h3>
-          <p>{{post.description | limitTo:200}}</p>
+          <p>{{post.description | limitTo:200}}...</p>
           <a href="#/{{post.id}}">Read More</a>
         </div>
       </div>
     </div>
     <div class="panel-footer">
       <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-      <p class="prettyDate" name="date"> {{post.prettyDate}}</p>
+      <p class="prettyDate" name="date"> {{post.created_at | date}}</p>
       <div class="pull-right">Posted by: {{post.author}}</div>
     </div>
   </div>
