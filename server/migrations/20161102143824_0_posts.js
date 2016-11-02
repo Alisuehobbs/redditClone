@@ -7,8 +7,7 @@ exports.up = function(knex) {
         table.string('author').notNullable();
         table.string('imgURL').notNullable();
         table.string('description', 2000).notNullable();
-        table.string('prettyDate').notNullable();
-        table.integer('votes').notNullable();
+        table.integer('votes').default(0);
         table.timestamps(true, true);
     })
 }
