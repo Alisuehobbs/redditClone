@@ -14,6 +14,10 @@ app.factory('RedditService', function ($http) {
     },
     postComment: function(comment) {
       return $http.post('/comments', comment)
+    },
+    putPost: function(post) {
+      const id = post.id
+      return $http.put(`/posts/${id}`, post)
     }
   }
 

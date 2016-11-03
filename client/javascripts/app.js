@@ -11,4 +11,8 @@ app.config(function($routeProvider) {
             templateUrl: '../views/comments.html',
             controller: 'CommentsController'
         })
+        .when('/edit/:id', {
+            templateUrl: '../views/edit.html',
+            controller: 'EditController'
+        })
 })

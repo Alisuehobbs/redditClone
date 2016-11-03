@@ -6,7 +6,6 @@ router.get('/:id', function (req, res, next) {
     knex('comments')
         .where('posts_id', req.params.id)
         .then( function (comment) {
-          console.log('comments in api:', comment);
             res.json(comment)
         })
 })

@@ -1,0 +1,33 @@
+<h1>Edit Your Post</h1>
+
+<form name="editPostForm" ng-submit="submitEditPost(editPost)">
+
+  <div class="form-group" ng-class="{'has-error' : editPostForm.title.$invalid && !editPostForm.title.$pristine,'has-success' : editPostForm.title.$valid }">
+    <label class="control-label" for="title">Title:</label>
+    <input type="text" name="title" class="form-control" ng-model="editPost.title" ng-minlength="2" ng-maxlength="30" ng-required="true" placeholder="Title">
+    <small ng-show="editPostForm.title.$error.minlength" class="help-block">Title is too short.</small>
+    <small ng-show="editPostForm.title.$error.maxlength" class="help-block">Title is too long.</small>
+  </div>
+  <div class="form-group" ng-class="{'has-error' : editPostForm.author.$invalid && !editPostForm.author.$pristine,'has-success' : editPostForm.author.$valid }">
+    <label class="control-label" for="author">Author:</label>
+    <input type="text" name="author" class="form-control" ng-model="editPost.author" ng-minlength="2" ng-maxlength="18" ng-required="true" placeholder="Author">
+    <small ng-show="editPostForm.author.$error.minlength" class="help-block">Author is too short.</small>
+    <small ng-show="editPostForm.author.$error.maxlength" class="help-block">Author is too long.</small>
+  </div>
+  <div class="form-group" ng-class="{'has-error' : editPostForm.imgURL.$invalid && !editPostForm.imgURL.$pristine,'has-success' : editPostForm.imgURL.$valid }">
+    <label class="control-label" for="imgURL">Image URL:</label>
+    <input type="url" name="imgURL" class="form-control" ng-model="editPost.imgURL" ng-required="true" placeholder="Image URL">
+    <small ng-show="editPostForm.imgURL.$invalid && !editPostForm.imgURL.$pristine" class="help-block">URL is invalid.</small>
+  </div>
+  <div class="form-group" ng-class="{'has-error' : editPostForm.description.$invalid && !editPostForm.description.$pristine,'has-success' : editPostForm.description.$valid }">
+    <label class="control-label" for="description">Description:</label>
+    <textarea rows="10" name="description" class="form-control" ng-model="editPost.description" ng-minlength="10" ng-maxlength="2000" ng-required="true" placeholder="Description"></textarea>
+    <small ng-show="editPostForm.description.$error.minlength" class="help-block">Description is too short.</small>
+    <small ng-show="editPostForm.description.$error.maxlength" class="help-block">Description is too long.</small>
+  </div>
+  <button type="submit" class="btn btn-default" ng-disabled="editPost.$invalid">Submit</button>
+
+</form>
+
+<button type="button" class="btn btn-default"> Cancel
+</button>
