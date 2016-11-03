@@ -25,6 +25,8 @@ app.controller('CommentsController', function($scope, RedditService, $routeParam
         RedditService.postComment(comment)
             .then( function (comment) {
                 $scope.comments.push(comment.data[0])
+                $scope.comment = {}
+                $scope.newComment.$setPristine()
             })
 
     }
@@ -34,6 +36,15 @@ app.controller('CommentsController', function($scope, RedditService, $routeParam
             .then( function () {
                 $location.url('/')
             })
+    }
+
+    $scope.deleteComment = function (comment) {
+      var id = comment.id
+      RedditService.deleteCommentFunction(id)
+          .then( function() {
+            const index = $scope.comments.indexOf(`comment`)
+            $scope.comments.splice(index, 1)
+          })
     }
 
     $scope.votes = function(post) {

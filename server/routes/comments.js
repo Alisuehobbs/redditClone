@@ -28,12 +28,19 @@ router.get('/one/:id', function (req, res, next) {
 })
 
 router.put('/:id', function (req, res, next) {
-  console.log('made it to api');
-  console.log('req.params.id:', req.params.id);
-  console.log('req.body:', req.body);
     knex('comments')
         .where('id', req.params.id)
         .update(req.body)
+        .then( function (comment) {
+          res.json(comment)
+        })
+})
+
+router.delete('/:id', function (req, res, next) {
+    knex('comments')
+        .where('id', req.params.id)
+        .first()
+        .del()
         .then( function (comment) {
           res.json(comment)
         })
