@@ -36,4 +36,14 @@ router.put('/:id', function(req, res, next) {
 
 })
 
+router.delete('/:id', function(req, res, next) {
+    knex('posts')
+        .where('id', req.params.id)
+        .first()
+        .del()
+        .then( function() {
+          res.json('Delete Success!')
+        })
+})
+
 module.exports = router;

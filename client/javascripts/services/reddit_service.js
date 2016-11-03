@@ -18,6 +18,9 @@ app.factory('RedditService', function ($http) {
     putPost: function(post) {
       const id = post.id
       return $http.put(`/posts/${id}`, post)
+    },
+    deletePost: function(id) {
+      return $http.delete(`/posts/${id}`)
     }
   }
 

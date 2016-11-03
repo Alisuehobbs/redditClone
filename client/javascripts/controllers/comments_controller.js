@@ -1,4 +1,4 @@
-app.controller('CommentsController', function($scope, RedditService, $routeParams) {
+app.controller('CommentsController', function($scope, RedditService, $routeParams, $location) {
 
     const id = $routeParams.id
 
@@ -27,6 +27,14 @@ app.controller('CommentsController', function($scope, RedditService, $routeParam
                 $scope.comments.push(comment.data[0])
             })
 
+    }
+
+    $scope.delete = function (post) {
+        console.log('post:', post);
+        RedditService.deletePost(post.id)
+            .then( function () {
+                $location.url('/')
+            })
     }
 
     $scope.votes = function(post) {

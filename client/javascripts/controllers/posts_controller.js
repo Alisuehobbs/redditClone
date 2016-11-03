@@ -6,7 +6,6 @@ app.controller("PostsController", function ($scope, RedditService) {
     RedditService.getPosts()
         .then( function(posts) {
           $scope.posts = posts.data
-          console.log('$scope.posts:', $scope.posts);
         })
 
     $scope.sort = "-votes"
