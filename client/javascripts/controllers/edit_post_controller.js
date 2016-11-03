@@ -1,4 +1,4 @@
-app.controller('EditController', function ($scope, RedditService, $routeParams, $location) {
+app.controller('EditPostController', function ($scope, RedditService, $routeParams, $location) {
 
   const id = $routeParams.id
 

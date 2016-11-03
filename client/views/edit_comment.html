@@ -1,0 +1,21 @@
+
+<h1> Edit Your Comment </h1>
+
+<form name="editCommentForm" ng-submit="submitEditedComment(editedComment)">
+  <div class="form-group" ng-class="{'has-error' : editCommentForm.author.$invalid && !editCommentForm.author.$pristine,'has-success' : editCommentForm.author.$valid }">
+    <label class="control-label" for="author">Author:</label>
+    <input type="text" name="author" class="form-control" ng-model="editedComment.author" ng-minlength="2" ng-maxlength="30" ng-required="true" placeholder="Author">
+    <small ng-show="editCommentForm.author.$error.minlength" class="help-block">Author is too short.</small>
+    <small ng-show="editCommentForm.author.$error.maxlength" class="help-block">Author is too long.</small>
+  </div>
+  <div class="form-group" ng-class="{'has-error' : editCommentForm.content.$invalid && !editCommentForm.content.$pristine,'has-success' : editCommentForm.content.$valid }">
+    <label class="control-label" for="content">Comment:</label>
+    <input type="text" name="content" class="form-control" ng-model="editedComment.content" ng-minlength="2" ng-maxlength="100" ng-required="true" placeholder="Comment">
+    <small ng-show="editCommentForm.content.$error.minlength" class="help-block">Content is too short.</small>
+    <small ng-show="editCommentForm.content.$error.maxlength" class="help-block">Content is too long.</small>
+  </div>
+  <div>
+    <input hidden ng-model="editedComment.posts_id" value="{{post.id}}">
+  </div>
+  <button type="submit" class="btn btn-default" ng-disabled="editCommentForm.$invalid" >Submit</button>
+</form>

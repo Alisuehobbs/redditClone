@@ -30,7 +30,6 @@ app.controller('CommentsController', function($scope, RedditService, $routeParam
     }
 
     $scope.delete = function (post) {
-        console.log('post:', post);
         RedditService.deletePost(post.id)
             .then( function () {
                 $location.url('/')

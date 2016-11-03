@@ -11,8 +11,12 @@ app.config(function($routeProvider) {
             templateUrl: '../views/comments.html',
             controller: 'CommentsController'
         })
-        .when('/edit/:id', {
-            templateUrl: '../views/edit.html',
-            controller: 'EditController'
+        .when('/edit_post/:id', {
+            templateUrl: '../views/edit_post.html',
+            controller: 'EditPostController'
+        })
+        .when('/edit_comment/:id', {
+            templateUrl: '../views/edit_comment.html',
+            controller: 'EditCommentController'
         })
 })
