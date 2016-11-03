@@ -1,5 +1,5 @@
 
-var app = angular.module("redditApp", ['ngAnimate', 'ngRoute']);
+var app = angular.module("redditApp", ['ngAnimate', 'ngRoute', 'ngResource']);
 
 app.config(function($routeProvider) {
     $routeProvider

@@ -1,23 +1,18 @@
 
-app.controller("PostsController", function ($scope, RedditService) {
+app.controller("PostsController", function ($scope, PostService) {
 
-    $scope.posts = []
-
-    RedditService.getPosts()
-        .then( function(posts) {
-          $scope.posts = posts.data
-        })
-
+    $scope.posts = PostService.query()
+    
     $scope.sort = "-votes"
 
     $scope.submitPost = function(post) {
         if (post) {
-            RedditService.addPost($scope.post)
-                .then( function(post) {
-                  $scope.posts.push(post.data[0])
-                  $scope.post = ''
-                  $scope.newPost.$setPristine()
-                })
+            $scope.post.votes = 0
+            const newPost = $scope.post
+            PostService.save(newPost, function () {})
+            $scope.posts.push(newPost)
+            $scope.post = ''
+            $scope.newPost.$setPristine()
         }
     }
 
@@ -33,17 +28,12 @@ app.controller("PostsController", function ($scope, RedditService) {
 
     $scope.addvote = function(post) {
       post.votes += 1
-      RedditService.changeVote(post)
-          .then( function () {
-          })
-
+      PostService.update(post, function () {})
     }
 
     $scope.subtractvote = function(post) {
       post.votes -= 1
-      RedditService.changeVote(post)
-          .then( function() {
-          })
+      PostService.update(post, function() {})
     }
 
     $scope.search = ''

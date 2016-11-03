@@ -1,11 +1,5 @@
-app.factory('RedditService', function ($http) {
+app.factory('RedditService', function ($http, $resource) {
   return {
-    getPosts: function () {
-      return $http.get('/posts')
-    },
-    addPost: function(post) {
-      return $http.post('/posts', post)
-    },
     getOne: function(id) {
       return $http.get(`/posts/${id}`)
     },
@@ -31,10 +25,6 @@ app.factory('RedditService', function ($http) {
     },
     deleteCommentFunction: function (id) {
       return $http.delete(`/comments/${id}`)
-    },
-    changeVote: function (post) {
-      const id = post.id
-      return $http.put(`/posts/votes/${id}`, post)
     }
   }
 
