@@ -31,6 +31,10 @@ app.factory('RedditService', function ($http) {
     },
     deleteCommentFunction: function (id) {
       return $http.delete(`/comments/${id}`)
+    },
+    changeVote: function (post) {
+      const id = post.id
+      return $http.put(`/posts/votes/${id}`, post)
     }
   }
 

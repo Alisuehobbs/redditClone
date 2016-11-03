@@ -31,13 +31,21 @@ app.controller("PostsController", function ($scope, RedditService) {
       }
     }
     //
-    // $scope.addvote = function(post) {
-    //     post.votes += 1
-    // }
-    //
-    // $scope.subtractvote = function(post) {
-    //     post.votes -= 1
-    // }
+    $scope.addvote = function(post) {
+      post.votes += 1
+      RedditService.changeVote(post)
+          .then( function () {
+          })
+
+    }
+
+    $scope.subtractvote = function(post) {
+      console.log('post:', post);
+      post.votes -= 1
+      RedditService.changeVote(post)
+          .then( function() {
+          })
+    }
 
     $scope.search = ''
 })
