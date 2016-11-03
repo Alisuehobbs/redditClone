@@ -17,4 +17,8 @@ app.controller('EditPostController', function ($scope, RedditService, $routePara
 
   }
 
+  $scope.cancelPost = function () {
+    $location.url('/')
+  }
+
 })

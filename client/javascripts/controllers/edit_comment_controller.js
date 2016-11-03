@@ -1,21 +1,28 @@
 app.controller('EditCommentController', function ($scope, RedditService, $location, $routeParams) {
 
-    var id = $routeParams.id
+    const postId = $routeParams.id
 
     $scope.editComment = {}
 
-    RedditService.getOneComment(id)
+    $scope.id = ''
+
+    RedditService.getOneComment(postId)
       .then( function (comment) {
           $scope.editedComment = comment.data
+          $scope.id = comment.data.posts_id
       })
 
     $scope.submitEditedComment = function (comment) {
-      console.log('comment:', comment);
-      var id = comment.posts_id
+      const id = comment.posts_id
       RedditService.putComment(comment)
           .then( function () {
             $location.url(`/${id}`)
           })
+    }
+
+    $scope.cancelComment = function () {
+      const id = $scope.id
+      $location.url(`/${id}`)
     }
 
 })
