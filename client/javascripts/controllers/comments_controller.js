@@ -13,9 +13,20 @@ app.controller('CommentsController', function($scope, RedditService, $routeParam
 
     RedditService.getComments(id)
         .then(function(comments) {
-            const commentsList = comments.data[0]
-            $scope.comments.push(commentsList)
-            console.log('$scope.comments:', $scope.comments);
+          if (comments.data.length === 1) {
+              $scope.comments.push(comments.data[0])
+          } else {
+            $scope.comments = comments.data
+          }
+          console.log('$scope.comments:', $scope.comments);
         })
 
+    $scope.submitComment = function (comment) {
+        $scope.comment.posts_id = $scope.post.id
+        RedditService.postComment(comment)
+            .then( function (comment) {
+                $scope.comments.push(comment.data[0])
+            })
+
+    }
 })

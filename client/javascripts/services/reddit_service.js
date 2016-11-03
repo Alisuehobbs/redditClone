@@ -11,6 +11,9 @@ app.factory('RedditService', function ($http) {
     },
     getComments: function(id) {
       return $http.get(`/comments/${id}`)
+    },
+    postComment: function(comment) {
+      return $http.post('/comments', comment)
     }
   }
 
