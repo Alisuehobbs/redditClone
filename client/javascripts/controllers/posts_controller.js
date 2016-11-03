@@ -30,7 +30,7 @@ app.controller("PostsController", function ($scope, RedditService) {
         return 'neutral';
       }
     }
-    //
+
     $scope.addvote = function(post) {
       post.votes += 1
       RedditService.changeVote(post)
@@ -40,7 +40,6 @@ app.controller("PostsController", function ($scope, RedditService) {
     }
 
     $scope.subtractvote = function(post) {
-      console.log('post:', post);
       post.votes -= 1
       RedditService.changeVote(post)
           .then( function() {

@@ -56,4 +56,19 @@ app.controller('CommentsController', function($scope, RedditService, $routeParam
         return 'neutral';
       }
     }
+
+    $scope.addvote = function(post) {
+      post.votes += 1
+      RedditService.changeVote(post)
+          .then( function () {
+          })
+
+    }
+
+    $scope.subtractvote = function(post) {
+      post.votes -= 1
+      RedditService.changeVote(post)
+          .then( function() {
+          })
+    }
 })
