@@ -6,6 +6,7 @@ app.controller("PostsController", function ($scope, RedditService) {
     RedditService.getPosts()
         .then( function(posts) {
           $scope.posts = posts.data
+          console.log('$scope.posts:', $scope.posts);
         })
 
     $scope.sort = "-votes"
@@ -20,18 +21,16 @@ app.controller("PostsController", function ($scope, RedditService) {
                 })
         }
     }
-    //
-    //
-    //
-    // $scope.votes = function(post) {
-    //   if (post.votes > 0) {
-    //     return 'positive';
-    //   } else if (post.votes < 0) {
-    //     return 'negative';
-    //   } else {
-    //     return 'neutral';
-    //   }
-    // }
+
+    $scope.votes = function(post) {
+      if (post.votes > 0) {
+        return 'positive';
+      } else if (post.votes < 0) {
+        return 'negative';
+      } else {
+        return 'neutral';
+      }
+    }
     //
     // $scope.addvote = function(post) {
     //     post.votes += 1
@@ -39,17 +38,6 @@ app.controller("PostsController", function ($scope, RedditService) {
     //
     // $scope.subtractvote = function(post) {
     //     post.votes -= 1
-    // }
-    //
-    // $scope.comment = {}
-    //
-    // $scope.submitComment = function(post, comment, index, newComment) {
-    //     event.preventDefault()
-    //     if (comment) {
-    //         post.comments.push(comment)
-    //         $scope.comment[index] = null
-    //         newComment.$setPristine()
-    //     }
     // }
 
     $scope.search = ''

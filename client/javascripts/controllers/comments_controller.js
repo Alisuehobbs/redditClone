@@ -18,8 +18,7 @@ app.controller('CommentsController', function($scope, RedditService, $routeParam
           } else {
             $scope.comments = comments.data
           }
-          console.log('$scope.comments:', $scope.comments);
-        })
+         })
 
     $scope.submitComment = function (comment) {
         $scope.comment.posts_id = $scope.post.id
@@ -28,5 +27,15 @@ app.controller('CommentsController', function($scope, RedditService, $routeParam
                 $scope.comments.push(comment.data[0])
             })
 
+    }
+
+    $scope.votes = function(post) {
+      if (post.votes > 0) {
+        return 'positive';
+      } else if (post.votes < 0) {
+        return 'negative';
+      } else {
+        return 'neutral';
+      }
     }
 })
