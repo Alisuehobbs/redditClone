@@ -9,10 +9,13 @@ app.controller("PostsController", function ($scope, PostService) {
         if (post) {
             $scope.post.votes = 0
             const newPost = $scope.post
-            PostService.posts.save(newPost, function () {})
-            $scope.posts.push(newPost)
-            $scope.post = ''
-            $scope.newPost.$setPristine()
+            PostService.posts.save(newPost, function (returnedPost) {
+              const newPost = returnedPost[0]
+              $scope.posts.push(newPost)
+              $scope.post = ''
+              $scope.newPost.$setPristine()
+
+            })
         }
     }
 
