@@ -19,11 +19,17 @@ app.service("PostService", function($resource) {
       },
       'get':  {
         method:'GET',
-        isArray:true
+        isArray:false
       },
       'save': {
         method: 'POST',
         isArray:true
+      }
+    }),
+    oneComment: $resource('comments/bypost/:id', {id: '@id'}, {
+      'get': {
+        method: 'GET',
+        isArray: true
       }
     })
   }

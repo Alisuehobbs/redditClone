@@ -19,4 +19,8 @@ app.config(function($routeProvider) {
             templateUrl: '../views/edit_comment.html',
             controller: 'EditCommentController'
         })
+        .when('/signin', {
+            templateUrl: '../views/signin.html',
+            controller: 'RegisterController'
+        })
 })

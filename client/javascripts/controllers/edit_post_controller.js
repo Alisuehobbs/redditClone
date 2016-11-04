@@ -1,20 +1,13 @@
-app.controller('EditPostController', function ($scope, RedditService, $routeParams, $location) {
+app.controller('EditPostController', function ($scope, PostService, $routeParams, $location) {
 
   const id = $routeParams.id
 
-  $scope.editPost = {}
-
-  RedditService.getOne(id)
-    .then( function(postToEdit) {
-      $scope.editPost = postToEdit.data
-    })
+$scope.editPost = PostService.posts.get({id: $routeParams.id}, function () {})
 
   $scope.submitEditPost = function (post) {
-    RedditService.putPost(post)
-        .then( function() {
-          $location.url(`/${id}`)
-        })
-
+    PostService.posts.update(post, function () {
+      $location.url(`/${id}`)
+    })
   }
 
   $scope.cancelPost = function () {

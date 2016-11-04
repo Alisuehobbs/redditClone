@@ -3,7 +3,9 @@ app.controller('CommentsController', function($scope, PostService, $routeParams,
 
   $scope.post = PostService.posts.get({id: $routeParams.id}, function () {})
 
-  $scope.comments = PostService.comments.get({id: $routeParams.id}, function() {})
+  PostService.oneComment.get({id: $routeParams.id}, function (comments) {
+      $scope.comments = comments
+  })
 
     $scope.submitComment = function (comment) {
         $scope.comment.posts_id = $scope.post.id
