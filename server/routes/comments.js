@@ -3,6 +3,7 @@ var router = express.Router();
 var knex = require('../db/knex')
 
 router.get('/:id', function (req, res, next) {
+  console.log('made it to the right get');
     knex('comments')
         .where('posts_id', req.params.id)
         .then( function (comment) {

@@ -1,15 +1,15 @@
 
 app.controller("PostsController", function ($scope, PostService) {
 
-    $scope.posts = PostService.query()
-    
+    $scope.posts = PostService.posts.query()
+
     $scope.sort = "-votes"
 
     $scope.submitPost = function(post) {
         if (post) {
             $scope.post.votes = 0
             const newPost = $scope.post
-            PostService.save(newPost, function () {})
+            PostService.posts.save(newPost, function () {})
             $scope.posts.push(newPost)
             $scope.post = ''
             $scope.newPost.$setPristine()
@@ -28,12 +28,12 @@ app.controller("PostsController", function ($scope, PostService) {
 
     $scope.addvote = function(post) {
       post.votes += 1
-      PostService.update(post, function () {})
+      PostService.posts.update(post, function () {})
     }
 
     $scope.subtractvote = function(post) {
       post.votes -= 1
-      PostService.update(post, function() {})
+      PostService.posts.update(post, function() {})
     }
 
     $scope.search = ''

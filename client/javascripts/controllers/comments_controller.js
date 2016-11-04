@@ -1,50 +1,31 @@
-app.controller('CommentsController', function($scope, RedditService, $routeParams, $location) {
+app.controller('CommentsController', function($scope, PostService, $routeParams, $location) {
 
-    const id = $routeParams.id
 
-    $scope.post = {}
+  $scope.post = PostService.posts.get({id: $routeParams.id}, function () {})
 
-    RedditService.getOne(id)
-        .then(function(post) {
-            $scope.post = post.data
-        })
-
-    $scope.comments = []
-
-    RedditService.getComments(id)
-        .then(function(comments) {
-          if (comments.data.length === 1) {
-              $scope.comments.push(comments.data[0])
-          } else {
-            $scope.comments = comments.data
-          }
-         })
+  $scope.comments = PostService.comments.get({id: $routeParams.id}, function() {})
 
     $scope.submitComment = function (comment) {
         $scope.comment.posts_id = $scope.post.id
-        RedditService.postComment(comment)
-            .then( function (comment) {
-                $scope.comments.push(comment.data[0])
-                $scope.comment = {}
-                $scope.newComment.$setPristine()
-            })
-
+        PostService.comments.save(comment, function (returnedComment) {
+            const newComment = returnedComment[0]
+            $scope.comments.push(newComment)
+            $scope.comment = {}
+            $scope.newComment.$setPristine()
+        })
     }
 
     $scope.delete = function (post) {
-        RedditService.deletePost(post.id)
-            .then( function () {
-                $location.url('/')
-            })
+      PostService.posts.delete(post, function () {
+        $location.url('/')
+      })
     }
 
     $scope.deleteComment = function (comment) {
-      var id = comment.id
-      RedditService.deleteCommentFunction(id)
-          .then( function() {
-            const index = $scope.comments.indexOf(`comment`)
-            $scope.comments.splice(index, 1)
-          })
+      PostService.comments.delete(comment, function () {
+        const index = $scope.comments.indexOf(comment)
+        $scope.comments.splice(index, 1)
+      })
     }
 
     $scope.votes = function(post) {
@@ -59,16 +40,11 @@ app.controller('CommentsController', function($scope, RedditService, $routeParam
 
     $scope.addvote = function(post) {
       post.votes += 1
-      RedditService.changeVote(post)
-          .then( function () {
-          })
-
+      PostService.posts.update(post, function () {})
     }
 
     $scope.subtractvote = function(post) {
       post.votes -= 1
-      RedditService.changeVote(post)
-          .then( function() {
-          })
+      PostService.posts.update(post, function() {})
     }
 })
