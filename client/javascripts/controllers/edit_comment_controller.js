@@ -9,7 +9,7 @@ app.controller('EditCommentController', function ($scope, PostService, $location
     $scope.submitEditedComment = function (comment) {
       PostService.comments.update(comment, function () {
         $scope.id = comment.posts_id
-        $location.url(`/${postId}`)
+        $location.url(`/${$scope.id}`)
       })
     }
 

@@ -5,6 +5,7 @@ exports.seed = function(knex, Promise) {
             return Promise.all([
 
                 knex('posts').insert({
+                  users_id: 1,
                   title: "Arancini",
                   author: "Ali Sue Hobbs",
                   imgURL: "http://christinascucina.com/wp-content/uploads/2013/03/IMG_1742.jpg",
@@ -14,6 +15,7 @@ exports.seed = function(knex, Promise) {
                 }),
 
                 knex('posts').insert({
+                  users_id: 1,
                   title: "Bacon Wrapped Dates",
                   author: "Ali Sue Hobbs",
                   imgURL: "http://dh3k79jmajxjl.cloudfront.net/wp-content/uploads/2014/11/19223940/Plate.jpg",
@@ -23,6 +25,7 @@ exports.seed = function(knex, Promise) {
                 }),
 
                 knex('posts').insert({
+                  users_id: 1,
                   title: "Vietnamese Spring Rolls",
                   author: "Ali Sue Hobbs",
                   imgURL: "http://www.girlmakesfood.com/wp-content/uploads/2012/08/Vegan-Spring-Rolls.jpg",

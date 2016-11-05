@@ -3,6 +3,7 @@
 exports.up = function(knex) {
     return knex.schema.createTable('posts', (table) => {
         table.increments();
+        table.integer('users_id').notNullable().references('id').inTable('users').onDelete('CASCADE');
         table.string('title').notNullable();
         table.string('author').notNullable();
         table.string('imgURL').notNullable();

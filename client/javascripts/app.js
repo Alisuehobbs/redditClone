@@ -1,11 +1,22 @@
+var app = angular.module("redditApp", ['ngAnimate', 'ngRoute', 'ngResource', 'ngCookies'])
 
-var app = angular.module("redditApp", ['ngAnimate', 'ngRoute', 'ngResource']);
+app.config(function($httpProvider) {
+    $httpProvider.defaults.withCredentials = true;
+});
+
+app.config(['$resourceProvider', function($resourceProvider) {
+  $resourceProvider.defaults.stripTrailingSlashes = false;
+}]);
 
 app.config(function($routeProvider) {
     $routeProvider
         .when('/', {
             templateUrl: '../views/posts.html',
             controller: 'PostsController'
+        })
+        .when('/signup', {
+            templateUrl: '../views/signup.html',
+            controller: 'RegisterController'
         })
         .when('/:id', {
             templateUrl: '../views/comments.html',
@@ -18,9 +29,5 @@ app.config(function($routeProvider) {
         .when('/edit_comment/:id', {
             templateUrl: '../views/edit_comment.html',
             controller: 'EditCommentController'
-        })
-        .when('/signin', {
-            templateUrl: '../views/signin.html',
-            controller: 'RegisterController'
         })
 })
