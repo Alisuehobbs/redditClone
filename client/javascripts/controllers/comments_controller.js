@@ -1,13 +1,18 @@
-app.controller('CommentsController', function($scope, PostService, $routeParams, $location) {
+app.controller('CommentsController', function($scope, PostService, $routeParams, $location, $cookies) {
 
 
-  $scope.post = PostService.posts.get({id: $routeParams.id}, function () {})
+  $scope.post = PostService.posts.get({id: $routeParams.id}, function (thing) {
+    console.log('thing:', thing);
+    $scope.comment.users_id = $cookies.get('signUpCookie')
+    console.log('$scope.comment.users_id:', $scope.comment.users_id);
+  })
 
   PostService.oneComment.get({id: $routeParams.id}, function (comments) {
       $scope.comments = comments
   })
 
-    $scope.submitComment = function (comment) {
+
+  $scope.submitComment = function (comment) {
         $scope.comment.posts_id = $scope.post.id
         PostService.comments.save(comment, function (returnedComment) {
             const newComment = returnedComment[0]

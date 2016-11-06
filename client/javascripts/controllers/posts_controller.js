@@ -1,13 +1,15 @@
 
-app.controller("PostsController", function ($scope, PostService) {
+app.controller("PostsController", function ($scope, PostService, $cookies) {
 
     $scope.posts = PostService.posts.query()
+    const cookie = $cookies.getObject('signUpCookie')
 
     $scope.sort = "-votes"
 
     $scope.submitPost = function(post) {
         if (post) {
             $scope.post.votes = 0
+            $scope.post.users_id = cookie.id
             const newPost = $scope.post
             PostService.posts.save(newPost, function (returnedPost) {
               const newPost = returnedPost[0]

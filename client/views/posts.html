@@ -39,7 +39,7 @@
 <form ng-show="showme" name="newPost" ng-submit="submitPost(newPost.$valid)">
 
   <div class="form-group" ng-class="{'has-error' : newPost.title.$invalid && !newPost.title.$pristine,'has-success' : newPost.title.$valid }">
-    <label class="control-label" for="title">Title:</label>
+    <a><label class="control-label" for="title">Title:</label></a>
     <input type="text" name="title" class="form-control" ng-model="post.title" ng-minlength="2" ng-maxlength="30" ng-required="true" placeholder="Title">
     <small ng-show="newPost.title.$error.minlength" class="help-block">Title is too short.</small>
     <small ng-show="newPost.title.$error.maxlength" class="help-block">Title is too long.</small>
@@ -73,7 +73,7 @@
           <img class="media-object" ng-src={{post.imgURL}}>
         </div>
         <div class="media-body">
-          <h3 class="media-heading">{{post.title}} | <a class="glyphicon glyphicon-arrow-up" aria-hidden="true" ng-click="addvote(post)"></a> <a class="glyphicon glyphicon-arrow-down" aria-hidden="true" ng-click="subtractvote(post)"></a> <span ng-class="votes(post)"> {{post.votes}} </span>
+          <h3 class="media-heading"><a href="#/{{post.id}}">{{post.title}}</a> | <a class="glyphicon glyphicon-arrow-up" aria-hidden="true" ng-click="addvote(post)"></a> <a class="glyphicon glyphicon-arrow-down" aria-hidden="true" ng-click="subtractvote(post)"></a> <span ng-class="votes(post)"> {{post.votes}} </span>
       </h3>
           <p>{{post.description | limitTo:200}}...</p>
           <a href="#/{{post.id}}">Read More</a>
