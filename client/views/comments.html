@@ -1,4 +1,3 @@
-
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -8,7 +7,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/#/">Reddit Clone</a>
+      <a href="/#/" class="navbar-brand">Reddit Clone</a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#/signup">SIGN UP</a></li>
+        <li><a href="#/login">LOG IN</a></li>
+        <li><a href="#/logout">LOG OUT</a></li>
+      </ul>
     </div>
   </div>
 </nav>
@@ -22,7 +28,7 @@
         <img class="media-object" ng-src={{post.imgURL}}>
       </div>
       <div class="media-body">
-        <h3 class="media-heading">{{post.title}}</a> | <a class="glyphicon glyphicon-arrow-up" aria-hidden="true" ng-click="addvote(post)"></a> <a class="glyphicon glyphicon-arrow-down" aria-hidden="true" ng-click="subtractvote(post)"></a> <span ng-class="votes(post)"> {{post.votes}} </span>
+        <h3 class="media-heading"><a>{{post.title}}</a> | <a class="glyphicon glyphicon-arrow-up" aria-hidden="true" ng-click="addvote(post)"></a> <a class="glyphicon glyphicon-arrow-down" aria-hidden="true" ng-click="subtractvote(post)"></a> <span ng-class="votes(post)"> {{post.votes}} </span>
       </h3>
         <p>{{post.description}}</p>
 

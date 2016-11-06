@@ -1,5 +1,5 @@
 
-app.controller("PostsController", function ($scope, PostService, $cookies) {
+app.controller("PostsController", function ($scope, PostService, $cookies, $location) {
 
     $scope.posts = PostService.posts.query()
     const cookie = $cookies.getObject('loggedIn')
@@ -7,7 +7,7 @@ app.controller("PostsController", function ($scope, PostService, $cookies) {
     $scope.sort = "-votes"
 
     $scope.submitPost = function(post) {
-        if (post) {
+      if (cookie) {
             $scope.post.votes = 0
             $scope.post.users_id = cookie.id
             const newPost = $scope.post
@@ -18,7 +18,9 @@ app.controller("PostsController", function ($scope, PostService, $cookies) {
               $scope.newPost.$setPristine()
 
             })
-        }
+      } else {
+        $scope.error = 'You must be logged in to create a new post.'
+      }
     }
 
     $scope.votes = function(post) {
@@ -42,4 +44,5 @@ app.controller("PostsController", function ($scope, PostService, $cookies) {
     }
 
     $scope.search = ''
+
 })
