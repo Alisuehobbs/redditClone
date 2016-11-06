@@ -3,11 +3,9 @@ var router = express.Router();
 var knex = require('../db/knex')
 
 router.get('/bypost/:id', function (req, res, next) {
-  console.log('made it to the correct get');
     knex('comments')
         .where('posts_id', req.params.id)
         .then( function (comment) {
-          console.log('comment in api:', comment);
             res.json(comment)
         })
 })
