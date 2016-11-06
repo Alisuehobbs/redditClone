@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var knex = require('../db/knex');
-const bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt');
 
 
 router.post('/', function(req, res, next) {
@@ -28,5 +28,6 @@ router.post('/', function(req, res, next) {
 
         })
 })
+
 
 module.exports = router;

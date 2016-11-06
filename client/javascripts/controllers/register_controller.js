@@ -1,10 +1,10 @@
 app.controller('RegisterController', function($scope, UserService, $location, $cookies) {
 
     $scope.submitSignUp = function(newUser) {
-        UserService.user.save(newUser, function(returnedobject) {
-            const user = returnedobject[0]
+        UserService.signup.save(newUser, function(returnedObject) {
+            const user = returnedObject[0]
             if (user.length === undefined) {
-                $cookies.putObject('signUpCookie', user)
+                $cookies.putObject('loggedIn', user)
                 $scope.newUser = {}
                 $scope.signUp.$setPristine()
                 $location.url('/')
@@ -13,6 +13,18 @@ app.controller('RegisterController', function($scope, UserService, $location, $c
             }
         })
 
+    }
+
+    $scope.submitLogIn = function (returningUser) {
+      UserService.login.save(returningUser, function (returnedObject) {
+        console.log('returnedObject:', returnedObject);
+        if (!returnedObject.message) {
+          $cookies.putObject('loggedIn', returnedObject)
+          $location.url('/')
+        } else {
+          $scope.error = returnedObject.message
+        }
+      })
     }
 
 })
