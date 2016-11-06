@@ -31,6 +31,10 @@ img {
     width: auto;
 }
 
+.error {
+  color: red;
+}
+
 .prettyDate {
     display: inline-block;
 }

@@ -17,7 +17,6 @@ app.controller('RegisterController', function($scope, UserService, $location, $c
 
     $scope.submitLogIn = function (returningUser) {
       UserService.login.save(returningUser, function (returnedObject) {
-        console.log('returnedObject:', returnedObject);
         if (!returnedObject.message) {
           $cookies.putObject('loggedIn', returnedObject)
           $location.url('/')

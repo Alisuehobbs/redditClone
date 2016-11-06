@@ -2,7 +2,7 @@
 app.controller("PostsController", function ($scope, PostService, $cookies) {
 
     $scope.posts = PostService.posts.query()
-    const cookie = $cookies.getObject('signUpCookie')
+    const cookie = $cookies.getObject('loggedIn')
 
     $scope.sort = "-votes"
 

@@ -1,11 +1,9 @@
 app.controller('CommentsController', function($scope, PostService, $routeParams, $location, $cookies) {
 
 
-  $scope.post = PostService.posts.get({id: $routeParams.id}, function (thing) {
-    console.log('thing:', thing);
-    $scope.comment.users_id = $cookies.get('signUpCookie')
-    console.log('$scope.comment.users_id:', $scope.comment.users_id);
-  })
+  $scope.post = PostService.posts.get({id: $routeParams.id}, function (thing) {})
+  const cookie = $cookies.getObject('loggedIn')
+  console.log('cookie:', cookie);
 
   PostService.oneComment.get({id: $routeParams.id}, function (comments) {
       $scope.comments = comments
@@ -23,9 +21,13 @@ app.controller('CommentsController', function($scope, PostService, $routeParams,
     }
 
     $scope.delete = function (post) {
-      PostService.posts.delete(post, function () {
-        $location.url('/')
-      })
+      if (post.users_id === cookie.id) {
+        PostService.posts.delete(post, function () {
+          $location.url('/')
+        })
+      } else {
+        $scope.error = 'Only the user that created this post can delete it. If you created this post, please log in.'
+      }
     }
 
     $scope.deleteComment = function (comment) {
