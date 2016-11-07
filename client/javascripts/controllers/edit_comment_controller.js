@@ -9,7 +9,9 @@ app.controller('EditCommentController', function ($scope, PostService, $location
     $scope.editedComment = PostService.comments.get({id: $routeParams.id}, function () {})
 
     $scope.submitEditedComment = function (comment) {
-      if (comment.users_id === cookie.id) {
+      if (!cookie) {
+        $scope.error = 'Only the user that created this comment can edit it. If you created this comment, please log in. Otherwise, click cancel to return to the main page.'
+      } else if (comment.users_id === cookie.id) {
         PostService.comments.update(comment, function () {
           $scope.id = comment.posts_id
           $location.url(`/${$scope.id}`)

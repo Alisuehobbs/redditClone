@@ -26,7 +26,9 @@ app.controller('CommentsController', function($scope, PostService, $routeParams,
     }
 
     $scope.delete = function(post) {
-        if (post.users_id === cookie.id) {
+        if (!cookie) {
+            $scope.error = 'Only the user that created this post can delete it. If you created this post, please log in.'
+        } else if (post.users_id === cookie.id) {
             PostService.posts.delete(post, function() {
                 $location.url('/')
             })
@@ -36,13 +38,15 @@ app.controller('CommentsController', function($scope, PostService, $routeParams,
     }
 
     $scope.deleteComment = function(comment) {
-        if (comment.users_id === cookie.id) {
+      if (!cookie) {
+            $scope.error = 'Only the user that created this comment can delete it. If you created this comment, please log in.'
+      } else if (comment.users_id === cookie.id) {
             PostService.comments.delete(comment, function() {
                 const index = $scope.comments.indexOf(comment)
                 $scope.comments.splice(index, 1)
             })
         } else {
-          $scope.error = 'Only the user that created this comment can delete it. If you created this comment, please log in.'
+            $scope.error = 'Only the user that created this comment can delete it. If you created this comment, please log in.'
         }
     }
 
