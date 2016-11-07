@@ -15,14 +15,18 @@ app.controller('CommentsController', function($scope, PostService, $routeParams,
 
 
     $scope.submitComment = function(comment) {
+      if (!cookie) {
+        $scope.error = 'You must be logged in to comment'
+      } else {
         $scope.comment.posts_id = $scope.post.id
         $scope.comment.users_id = cookie.id
         PostService.comments.save(comment, function(returnedComment) {
-            const newComment = returnedComment[0]
-            $scope.comments.push(newComment)
-            $scope.comment = {}
-            $scope.newComment.$setPristine()
+          const newComment = returnedComment[0]
+          $scope.comments.push(newComment)
+          $scope.comment = {}
+          $scope.newComment.$setPristine()
         })
+      }
     }
 
     $scope.delete = function(post) {
