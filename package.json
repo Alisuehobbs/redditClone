@@ -5,8 +5,8 @@
     "scripts": {
         "knex": "knex",
         "heroku-postbuild": "knex migrate:latest",
-        "nodemon": "nodemon server.js",
-        "start": "node ./bin/www"
+        "nodemon": "nodemon app.js",
+        "start": "node ./server/bin/www"
     },
     "engines": {
         "node": "6.6.0"
