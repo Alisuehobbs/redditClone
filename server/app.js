@@ -26,6 +26,8 @@ app.use('/comments', comments);
 app.use('/signup', signup);
 app.use('/login', login);
 
+const port = process.env.PORT || 8000;
+
 app.listen(port, () => {
     if (app.get('env') !== 'development') {
         // eslint-disable-next-line no-console
