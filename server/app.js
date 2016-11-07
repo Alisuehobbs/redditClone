@@ -1,6 +1,3 @@
-if (process.env.NODE_ENV !== 'production') {
-    require('dotenv').config();
-}
 
 var express = require('express');
 var path = require('path');
@@ -28,6 +25,13 @@ app.use('/posts', posts);
 app.use('/comments', comments);
 app.use('/signup', signup);
 app.use('/login', login);
+
+app.listen(port, () => {
+    if (app.get('env') !== 'development') {
+        // eslint-disable-next-line no-console
+        console.log('Listening on port', port);
+    }
+});
 
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {
